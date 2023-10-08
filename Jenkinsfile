@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run Site'){
             steps{
-                sh 'nohup npm start &'
+                sh 'forever start app.ts'
             }
         }
         stage('OWASP ZAP DAST Scan') {
