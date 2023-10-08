@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run Site'){
             steps{
-                sh 'forever start app.ts'
+                sh 'npm start'
             }
         }
         stage('OWASP ZAP DAST Scan') {
