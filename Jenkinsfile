@@ -2,6 +2,9 @@ pipeline {
     agent any
 
     stages {
+        stage('Install Dependencies'){
+            sh 'npm install' // Dependency Installation stage
+        }
         stage('Snyk Dependency Scan') {
             steps{
                 snykSecurity failOnIssues: false, organisation: 'DevTraleski', projectName: 'JuiceShop Clone', snykInstallation: 'SnykPlugin', snykTokenId: 'Snyk'
