@@ -3,7 +3,9 @@ pipeline {
 
     stages {
         stage('Install Dependencies'){
-            sh 'npm install' // Dependency Installation stage
+            steps{
+                sh 'npm install' // Dependency Installation stage
+            }
         }
         stage('Snyk Dependency Scan') {
             steps{
