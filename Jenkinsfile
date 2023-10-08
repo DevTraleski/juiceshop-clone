@@ -13,12 +13,12 @@ pipeline {
         }
         stage('Run Site'){
             steps{
-                sh 'npm start &'
+                sh 'nohup npm start &'
             }
         }
         stage('OWASP ZAP DAST Scan') {
             steps{
-                sh "curl http://localhost:3000"
+                sh 'curl http://localhost:3000/'
             }
         }
     }
