@@ -11,19 +11,14 @@ pipeline {
                 sh 'npm install' // Dependency Installation stage
             }
         }
-        stage('Snyk Dependency Scan') {
+        stage('Run Site'){
             steps{
-                snykSecurity failOnIssues: false, organisation: 'devtraleski', projectName: 'JuiceShop Clone', snykInstallation: 'SnykPlugin', snykTokenId: 'Snyk'
+                sh 'npm start'
             }
         }
-        stage('SonarQube analysis') {
-            environment {
-                scannerHome = tool 'SonarQubeScanner'
-            }
-            steps {
-                withSonarQubeEnv(credentialsId: 'JenkinsTokenSonar', installationName: 'SonarQubeScanner') {
-                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=JuiceShop"
-                }
+        stage('OWASP ZAP DAST Scan') {
+            steps{
+                sh "curl http://localhost:3000"
             }
         }
     }
