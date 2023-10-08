@@ -12,7 +12,7 @@ pipeline {
             }
             steps {
                 withSonarQubeEnv(credentialsId: 'JenkinsTokenSonar', installationName: 'SonarQubeScanner') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=JuiceShop"
                 }
             }
         }
