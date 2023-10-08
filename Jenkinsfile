@@ -16,5 +16,15 @@ pipeline {
                 snykSecurity failOnIssues: false, organisation: 'devtraleski', projectName: 'JuiceShop Clone', snykInstallation: 'SnykPlugin', snykTokenId: 'Snyk'
             }
         }
+        stage('SonarQube analysis') {
+            environment {
+                scannerHome = tool 'SonarQubePlugin'
+            }
+            steps {
+                withSonarQubeEnv(credentialsId: 'JenkinsTokenSonar', installationName: 'SonarQubePlugin') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
+            }
+        }
     }
 }
