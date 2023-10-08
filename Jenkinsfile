@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Run Site'){
             steps{
-                sh 'npm start'
+                sh 'npm start &'
             }
         }
         stage('OWASP ZAP DAST Scan') {
