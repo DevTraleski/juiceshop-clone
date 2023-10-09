@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Akeyless Secret Management') {
             steps{
-                withVault([configuration: 'AkeylessAPI', vaultSecrets: [path: 'secret/data/secretflag/flag', engineVersion: 1, secretValues: [envVar: 'flag', vaultKey: 'data']]]) {
+                withVault([configuration: [vaultUrl: 'https://hvp.akeyless.io', vaultCredentialId: 'AkeylessAPI', engineVersion: 1], vaultSecrets: [path: 'secret/data/secretflag/flag', engineVersion: 1, secretValues: [envVar: 'flag', vaultKey: 'data']]]) {
                     sh 'echo $flag'
                 }
             }
