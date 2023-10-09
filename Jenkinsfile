@@ -6,7 +6,7 @@ pipeline {
     }
 
     stages {
-        stage('OWASP ZAP DAST Scan') {
+        stage('Akeyless Secret Management') {
             def secrets = [
                 [path: '/secretflag', engineVersion: 1, secretValues: [
                         [envVar: 'flag', vaultKey: 'flag']
