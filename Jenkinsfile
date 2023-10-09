@@ -10,6 +10,7 @@ pipeline {
             steps{
                 withCredentials([string(credentialsId: 'SecretFlag', variable: 'flag')]) {
                     sh 'echo ${flag} > ctf.key'
+                    sh 'cat ctf.key'
                 }
             }
         }
