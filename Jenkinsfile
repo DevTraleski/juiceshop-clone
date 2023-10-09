@@ -9,7 +9,7 @@ pipeline {
         stage('Secret Management') {
             steps{
                 withCredentials([string(credentialsId: 'SecretFlag', variable: 'flag')]) {
-                    sh 'echo ${flag}'
+                    sh 'echo ${flag} > ctf.key'
                 }
             }
         }
