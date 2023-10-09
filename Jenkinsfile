@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Snyk Dependency Scan') {
             steps{
-                snykSecurity failOnIssues: false, organisation: 'devtraleski', projectName: 'JuiceShop Clone', snykInstallation: 'SnykPlugin', snykTokenId: 'Snyk'
+                snykSecurity failOnIssues: false, organisation: 'devtraleski', projectName: 'JuiceShop', snykInstallation: 'SnykPlugin', snykTokenId: 'Snyk'
             }
         }
         stage('SonarQube analysis') {
