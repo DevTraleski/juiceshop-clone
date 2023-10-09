@@ -8,19 +8,8 @@ pipeline {
     stages {
         stage('Akeyless Secret Management') {
             steps{
-                script{
-                    def secrets = [
-                        [path: '/secretflag', engineVersion: 1, secretValues: [
-                                [envVar: 'flag', vaultKey: 'flag']
-                            ]
-                        ]
-                    ]
-                    def configuration = [vaultUrl: 'https://hvp.akeyless.io',
-                         vaultCredentialId: 'p-l3s2gxuuj2k1',
-                         engineVersion: 1]
-                    withVault([configuration: configuration, vaultSecrets: secrets]) {
-                        sh 'echo $flag'
-                    }
+                withVault([configuration: 'jenkins', vaultSecrets: [path: '/secretflag', engineVersion: 1, secretValues: [envVar: 'flag', vaultKey: 'flag']]]) {
+                    sh 'echo $flag'
                 }
             }
         }
