@@ -6,6 +6,22 @@ pipeline {
     }
 
     stages {
+        stage('OWASP ZAP DAST Scan') {
+            def secrets = [
+                [path: '/secretflag', engineVersion: 1, secretValues: [
+                        [envVar: 'flag', vaultKey: 'flag']
+                    ]
+                ]
+            ]
+            def configuration = [vaultUrl: 'https://hvp.akeyless.io',
+                         vaultCredentialId: 'p-l3s2gxuuj2k1',
+                         engineVersion: 1]
+            steps{
+                withVault([configuration: configuration, vaultSecrets: secrets]) {
+                    sh 'echo $flag'
+                }
+            }
+        }
         stage('Install Dependencies'){
             steps{
                 sh 'npm install' // Dependency Installation stage
