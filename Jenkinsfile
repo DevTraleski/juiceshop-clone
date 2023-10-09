@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Akeyless Secret Management') {
             steps{
-                withVault([configuration: 'jenkins', vaultSecrets: [path: '/secretflag', engineVersion: 1, secretValues: [envVar: 'flag', vaultKey: 'flag']]]) {
+                withVault([configuration: 'AkeylessAPI', vaultSecrets: [path: 'secret/data/secretflag/flag', engineVersion: 1, secretValues: [envVar: 'flag', vaultKey: 'data']]]) {
                     sh 'echo $flag'
                 }
             }
